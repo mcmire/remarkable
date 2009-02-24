@@ -16,6 +16,10 @@ require 'remarkable/helpers'
 require 'remarkable/assertions'
 require 'remarkable/example/example_methods'
 
-require 'remarkable/active_record/active_record' if defined?(ActiveRecord::Base)
-require 'remarkable/controller/controller' if defined?(ActionController::Base)
+if Object.const_defined?(:ActiveRecord) && ActiveRecord.const_defined?(:Base)
+  require 'remarkable/active_record/active_record'
+end
+if Object.const_defined?(:ActionController) && ActionController.const_defined?(:Base)
+  require 'remarkable/controller/controller'
+end
 require 'remarkable/rails' if defined?(RAILS_ROOT)
